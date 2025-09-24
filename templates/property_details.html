@@ -1,0 +1,54 @@
+{% extends "parent.html" %} {% block content %}
+<div class="container mt-5">
+  <h3>{{ prop.name }}</h3>
+  <p>{{ prop.location }} | ${{ prop.price }}</p>
+  <p>{{ prop.description }}</p>
+
+  <div id="carouselImages" class="carousel slide mb-3" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      {% for img in prop.images %}
+      <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+        <img
+          src="{{ url_for('image', image_id=img.id) }}"
+          class="d-block w-100"
+          style="height: 400px; object-fit: cover"
+        />
+      </div>
+      {% endfor %}
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselImages"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselImages"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+
+  {% if prop.latitude and prop.longitude %}
+  <div id="map" style="height: 400px"></div>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    var map = L.map('map').setView([{{ prop.latitude }}, {{ prop.longitude }}], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom:19 }).addTo(map);
+    L.marker([{{ prop.latitude }}, {{ prop.longitude }}]).addTo(map).bindPopup('{{ prop.name }}');
+  </script>
+  {% endif %}
+
+  <a
+    href="{{ url_for('add_wishlist', property_id=prop.id) }}"
+    class="btn btn-warning mt-3"
+    >Add to Wishlist</a
+  >
+</div>
+{% endblock %}

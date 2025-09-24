@@ -1,0 +1,49 @@
+{% extends "parent.html" %} {% block content %}
+<div class="container mt-5">
+  <h3>Properties</h3>
+  <form method="GET" class="mb-3 d-flex gap-2">
+    <input
+      type="text"
+      class="form-control"
+      name="city"
+      placeholder="Search by location"
+      value="{{ search }}"
+    />
+    <button class="btn btn-primary">Search</button>
+  </form>
+
+  <div class="row">
+    {% for prop in properties %}
+    <div class="col-md-4 mb-3">
+      <div class="card">
+        {% if prop.images %}
+        <img
+          src="{{ url_for('image', image_id=prop.images[0].id) }}"
+          class="card-img-top"
+          style="height: 200px; object-fit: cover"
+        />
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ prop.name }}</h5>
+          <p class="card-text">{{ prop.location }} | ${{ prop.price }}</p>
+          <a
+            href="{{ url_for('property_details', property_id=prop.id) }}"
+            class="btn btn-primary"
+            >Details</a
+          >
+          {% if user and user.is_admin %}
+          <form
+            action="{{ url_for('delete_property', property_id=prop.id) }}"
+            method="POST"
+            class="mt-1"
+          >
+            <button class="btn btn-danger btn-sm">Delete</button>
+          </form>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

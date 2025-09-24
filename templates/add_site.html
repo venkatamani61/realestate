@@ -1,0 +1,10 @@
+<h2>Add New Property</h2>
+<form method="POST" enctype="multipart/form-data">
+<input type="text" name="name" placeholder="Property Name" required><br>
+<input type="text" name="location" placeholder="Location" required><br>
+<input type="text" name="price" placeholder="Price" required><br>
+<textarea name="description" placeholder="Description"></textarea><br>
+<input type="file" name="photo" accept="image/*"><br><br>
+<button type="submit">Add Property</button>
+</form>
+<a href="{{ url_for('sites') }}">Back to Sites</a>

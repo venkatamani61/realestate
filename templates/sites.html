@@ -1,0 +1,15 @@
+<h2>Available Properties</h2>
+{% for site in sites %}
+<div>
+<h3>{{ site.name }}</h3>
+<p>{{ site.location }} - {{ site.price }}</p>
+<p>{{ site.description }}</p>
+{% if site.photo %}
+<img src="{{ url_for('site_photo', site_id=site.id) }}" width="300">
+{% endif %}
+<hr>
+</div>
+{% else %}
+<p>No properties available.</p>
+{% endfor %}
+<a href="{{ url_for('profile') }}">Back to Profile</a>

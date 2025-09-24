@@ -1,0 +1,20 @@
+{% extends "parent.html" %} {% block content %}
+<div class="container mt-5">
+  <h3>Register</h3>
+  <form method="POST">
+    <div class="mb-3">
+      <label>Username</label>
+      <input type="text" class="form-control" name="username" required />
+    </div>
+    <div class="mb-3">
+      <label>Email</label>
+      <input type="email" class="form-control" name="email" required />
+    </div>
+    <div class="mb-3">
+      <label>Password</label>
+      <input type="password" class="form-control" name="password" required />
+    </div>
+    <button class="btn btn-success">Register</button>
+  </form>
+</div>
+{% endblock %}

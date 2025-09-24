@@ -1,0 +1,31 @@
+{% extends "parent.html" %} {% block content %}
+<div class="container mt-5">
+  <h3>My Wishlist</h3>
+  <div class="row">
+    {% for item in user.wishlist %}
+    <div class="col-md-4 mb-3">
+      <div class="card">
+        {% if item.property.images %}
+        <img
+          src="{{ url_for('image', image_id=item.property.images[0].id) }}"
+          class="card-img-top"
+          style="height: 200px; object-fit: cover"
+        />
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ item.property.name }}</h5>
+          <p class="card-text">
+            {{ item.property.location }} | ${{ item.property.price }}
+          </p>
+          <a
+            href="{{ url_for('property_details', property_id=item.property.id) }}"
+            class="btn btn-primary"
+            >Details</a
+          >
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

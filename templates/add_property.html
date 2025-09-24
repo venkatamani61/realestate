@@ -1,0 +1,67 @@
+{% extends "parent.html" %} {% block content %}
+<div class="container mt-5">
+  <h3>Add New Property</h3>
+  <form method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="name" class="form-label">Property Name</label>
+      <input type="text" class="form-control" id="name" name="name" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="location" class="form-label">Location</label>
+      <input
+        type="text"
+        class="form-control"
+        id="location"
+        name="location"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="price" class="form-label">Price</label>
+      <input
+        type="number"
+        class="form-control"
+        id="price"
+        name="price"
+        step="0.01"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        class="form-control"
+        id="description"
+        name="description"
+      ></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="latitude" class="form-label">Latitude</label>
+      <input type="text" class="form-control" id="latitude" name="latitude" />
+    </div>
+
+    <div class="mb-3">
+      <label for="longitude" class="form-label">Longitude</label>
+      <input type="text" class="form-control" id="longitude" name="longitude" />
+    </div>
+
+    <div class="mb-3">
+      <label for="images" class="form-label">Property Images</label>
+      <input
+        type="file"
+        class="form-control"
+        id="images"
+        name="images"
+        multiple
+      />
+      <small class="text-muted">You can upload multiple images.</small>
+    </div>
+
+    <button type="submit" class="btn btn-success">Add Property</button>
+  </form>
+</div>
+{% endblock %}

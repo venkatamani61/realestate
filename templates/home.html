@@ -1,0 +1,146 @@
+<!-- Hero Section Styles -->
+<style>
+  body {
+    overflow-x: hidden;
+  }
+
+  .hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(-45deg, #6a11cb, #2575fc, #ff6a00, #ffb347);
+    background-size: 400% 400%;
+    animation: gradientBG 20s ease infinite;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+  }
+
+  @keyframes gradientBG {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .hero h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    animation: fadeInDown 2s ease forwards;
+  }
+
+  .hero p {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+    animation: fadeInUp 2s ease forwards;
+  }
+
+  .btn-hero {
+    font-size: 1.2rem;
+    padding: 15px 40px;
+    margin: 10px;
+    border-radius: 50px;
+    text-decoration: none;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+  }
+
+  .btn-hero:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  @keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Floating Property Icons */
+  .floating-icons {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .floating-icons i {
+    position: absolute;
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.7);
+    animation: float 15s linear infinite;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-50px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+</style>
+
+<!-- Hero Section -->
+<div class="hero">
+  <h1>Find Your Dream Home</h1>
+  <p>Buy, Sell, or Rent Properties Easily with RealEstate</p>
+  <div>
+    <a href="{{ url_for('properties') }}" class="btn-hero">View Properties</a>
+    <a href="{{ url_for('login') }}" class="btn-hero">Login / Register</a>
+  </div>
+
+  <!-- Floating Icons -->
+  <div class="floating-icons" id="floating-icons"></div>
+</div>
+
+<!-- Floating Property Icons Script -->
+<script>
+  const iconContainer = document.getElementById("floating-icons");
+  const icons = ["🏠", "🏡", "🏢", "🏘️", "🏚️", "🏰"];
+
+  for (let i = 0; i < 20; i++) {
+    let icon = document.createElement("i");
+    icon.innerText = icons[Math.floor(Math.random() * icons.length)];
+    icon.style.left = Math.random() * 100 + "vw";
+    icon.style.fontSize = 15 + Math.random() * 30 + "px";
+    icon.style.animationDuration = 10 + Math.random() * 10 + "s";
+    icon.style.animationDelay = Math.random() * 5 + "s";
+    iconContainer.appendChild(icon);
+  }
+</script>

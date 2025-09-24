@@ -1,0 +1,14 @@
+{% extends "parent.html" %} {% block content %}
+<div class="container mt-5">
+  <h3>Welcome, {{ user.username }}</h3>
+  <p>Email: {{ user.email }}</p>
+  {% if user.is_admin %}
+  <a class="btn btn-success" href="{{ url_for('add_property') }}"
+    >Add Property</a
+  >
+
+  {% endif %}
+
+  <a class="btn btn-primary" href="{{ url_for('wishlist') }}">My Wishlist</a>
+</div>
+{% endblock %}
