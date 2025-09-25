@@ -1,26 +1,30 @@
-{% extends "parent.html" %}
-{% block content %}
+{% extends "parent.html" %} {% block content %}
 <div class="container mt-5">
   <h3 class="mb-4">My Wishlist</h3>
   <div class="row">
-    {% for item in wishlist_items %}
-      {% set prop = item.property %}
-      <div class="col-md-4 mb-3">
-        <div class="card shadow-sm">
-          {% if prop.images %}
-            <img src="{{ url_for('image', image_id=prop.images[0].id) }}" 
-                 class="card-img-top" style="height: 200px; object-fit: cover;">
-          {% endif %}
-          <div class="card-body">
-            <h5 class="card-title">{{ prop.name }}</h5>
-            <p class="card-text">{{ prop.location }} | ${{ prop.price }}</p>
-            <a href="{{ url_for('property_details', property_id=prop.id) }}" 
-               class="btn btn-primary">Details</a>
-          </div>
+    {% for item in wishlist_items %} {% set prop = item.property %}
+    <div class="col-md-4 mb-3">
+      <div class="card shadow-sm">
+        {% if prop.images %}
+        <img
+          src="{{ url_for('image', image_id=prop.images[0].id) }}"
+          class="card-img-top"
+          style="height: 200px; object-fit: cover"
+        />
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ prop.name }}</h5>
+          <p class="card-text">{{ prop.location }} | ${{ prop.price }}</p>
+          <a
+            href="{{ url_for('property_details', property_id=prop.id) }}"
+            class="btn btn-primary"
+            >Details</a
+          >
         </div>
       </div>
+    </div>
     {% else %}
-      <p class="text-muted">Your wishlist is empty.</p>
+    <p class="text-muted">Your wishlist is empty.</p>
     {% endfor %}
   </div>
 </div>
