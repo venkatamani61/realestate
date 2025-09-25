@@ -199,8 +199,16 @@ def add_wishlist(property_id):
 def wishlist():
     if 'user_id' not in session:
         return redirect(url_for('login'))
+
     user = User.query.get(session['user_id'])
-    return render_template('wishlist.html', user=user)
+    # Fetch all wishlist items with their properties
+    wishlist_items = []
+    for item in user.wishlist:
+        prop = Property.query.get(item.property_id)
+        wishlist_items.append({'wishlist': item, 'property': prop})
+
+    return render_template('wishlist.html', wishlist_items=wishlist_items)
+
 
 @app.route('/profile')
 def profile():
